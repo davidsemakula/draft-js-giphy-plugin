@@ -20,6 +20,9 @@ export default class GiphySelect extends Component {
     version: `${TYPE_GIFS}:`,
   };
 
+  selectorRef = null;
+  popoverRef = null;
+
   // When the selector is open and users click anywhere on the page,
   // the selector should close
   componentDidMount() {
@@ -36,40 +39,32 @@ export default class GiphySelect extends Component {
     document.removeEventListener('click', this.onOutsideClick);
   }
 
-  // Open the popover
-  openPopover = () => {
-    if (!this.state.open) {
-      this.preventNextClose = true;
-      this.setState({
-        open: true,
-      });
-    }
+  // Toggle the popover
+  togglePopover = () => {
+    this.setState({
+      open: !this.state.open
+    });
   };
 
   // Close the popover
   closePopover = () => {
-    if (!this.preventNextClose && this.state.open) {
+    if (this.state.open) {
       this.setState({
         open: false,
       });
     }
-
-    this.preventNextClose = false;
-  };
-
-  setPopoverRef = (node) => {
-    this.popoverRef = node;
   };
 
   onOutsideClick = (e) => {
-    if (this.popoverRef && !this.popoverRef.contains(e.target)) {
+    if (this.popoverRef && !this.popoverRef.contains(e.target) &&
+      this.selectorRef && !this.selectorRef.contains(e.target)) {
+      // Ignore clicks inside popover or on selector
       this.closePopover();
     }
   };
 
   changeQuery = e => {
     e.preventDefault();
-
     this.setState({query: e.target.value || ''});
   };
 
@@ -107,6 +102,8 @@ export default class GiphySelect extends Component {
           media, user,
         })
     );
+
+    this.closePopover();
   };
 
   render() {
@@ -123,17 +120,18 @@ export default class GiphySelect extends Component {
       <div className={theme.select}>
         <button
           className={buttonClassName}
-          onMouseUp={this.openPopover}
+          onMouseUp={this.togglePopover}
           type="button"
+          ref={node => (this.selectorRef = node)}
         >
           {this.props.selectButtonContent}
         </button>
 
         {open && (
-            <div className={popoverClassName} ref={this.setPopoverRef}>
+            <div className={popoverClassName} ref={node => (this.popoverRef = node)}>
               <div className={theme.searchWrapper}>
                 <input className={theme.searchInput}
-                       type="text"
+                       type="search"
                        placeholder="Search GIPHY"
                        value={query}
                        onChange={this.changeQuery} />
