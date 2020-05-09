@@ -1,12 +1,14 @@
 {
-  "name": "draft-js-giphy-plugin",
-  "version": "0.1.0-rc.18",
+  "name": "@davidsemakula/draft-js-giphy-plugin",
+  "version": "0.1.0",
   "description": "Giphy Plugin for DraftJS",
   "author": {
     "name": "David Semakula",
     "email": "tdsemakula@gmail.com",
     "url": "http://davidsemakula.com"
   },
+  "homepage": "https://github.com/davidsemakula/draft-js-giphy-plugin",
+  "bugs": "https://github.com/davidsemakula/draft-js-giphy-plugin/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/davidsemakula/draft-js-giphy-plugin.git"
