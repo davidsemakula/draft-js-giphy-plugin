@@ -24,7 +24,10 @@
     "ux",
     "components",
     "widget",
-    "react-component"
+    "react-component",
+    "giphy",
+    "gif",
+    "stickers"
   ],
   "scripts": {
     "clean": "./node_modules/.bin/rimraf lib",
