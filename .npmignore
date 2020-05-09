@@ -28,4 +28,5 @@ yarn-error.log*
 babel.config.js
 linaria.config.js
 rollup.config.js
+/scripts/
 /src/
