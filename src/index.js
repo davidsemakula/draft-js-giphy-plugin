@@ -17,9 +17,10 @@ export default (config = {}) => {
     : '☺';
 
   const hideAttribution = typeof config.hideAttribution === 'boolean'?config.hideAttribution:true,
-      gridWidth = config.gridWidth || 800,
-      gridColumns = config.gridColumns || 3,
-      gridGutter = config.gridGutter || 6;
+      gridColumns = config.gridColumns || 2,
+      gridGutter = config.gridGutter || 4,
+      limit = config.limit || 100,
+      errorMessage = config.errorMessage || 'Error loading GIFs.';
 
   const gf = new GiphyFetch(config.apiKey);
 
@@ -35,11 +36,12 @@ export default (config = {}) => {
       {...props}
       apiClient={gf}
       selectButtonContent={selectButtonContent}
-      gridWidth={gridWidth}
       gridColumns={gridColumns}
       gridGutter={gridGutter}
       theme={theme}
       hideAttribution={hideAttribution}
+      limit={limit}
+      errorMessage={errorMessage}
     />
   );
   const blockRendererConfig = {

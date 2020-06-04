@@ -1,6 +1,6 @@
 {
   "name": "@davidsemakula/draft-js-giphy-plugin",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Giphy Plugin for DraftJS",
   "author": {
     "name": "David Semakula",
@@ -40,8 +40,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bricks.js": "^1.8.0",
     "@giphy/js-fetch-api": "^1.5.9",
-    "@giphy/react-components": "^1.0.5",
     "immutable": "~3.7.4",
     "lodash": "^4.17.15"
   },
