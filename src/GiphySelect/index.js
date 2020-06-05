@@ -95,7 +95,7 @@ export default class GiphySelect extends Component {
       this.bricksInstance = Bricks({
         position: false,
         container,
-        packed: `data-packed-${type || ''}-${(query || '').replace(/A-Za-z/ig, '-')}`,
+        packed: `data-packed-${type || ''}-${(query || '').replace(/[^A-Za-z]/ig, '-')}`,
         sizes: [
           {columns: gridColumns, gutter: gridGutter},
         ]
