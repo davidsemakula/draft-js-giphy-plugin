@@ -1,6 +1,6 @@
 {
   "name": "@davidsemakula/draft-js-giphy-plugin",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Giphy Plugin for DraftJS",
   "author": {
     "name": "David Semakula",

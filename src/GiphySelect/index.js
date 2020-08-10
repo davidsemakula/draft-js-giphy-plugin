@@ -21,6 +21,8 @@ export default class GiphySelect extends Component {
       open: false,
       type: TYPE_GIFS,
       query: '',
+      openUp: false,
+      openRight: false,
     };
   }
 
@@ -28,10 +30,37 @@ export default class GiphySelect extends Component {
   // the selector should close
   componentDidMount() {
     document.addEventListener('click', this.onOutsideClick);
+
+    this.evaluatePosition();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { open } = this.state,
+      hasOpenChanged = open !== prevState.open;
+
+    if(open && hasOpenChanged) {
+      this.evaluatePosition();
+    }
   }
 
   componentWillUnmount() {
     document.removeEventListener('click', this.onOutsideClick);
+  }
+
+  evaluatePosition = () => {
+    if(this.selectorRef) {
+      const viewportOffset = this.selectorRef.getBoundingClientRect();
+
+      const topOffset = viewportOffset.top,
+        bottomOffset = window.innerHeight - viewportOffset.bottom,
+        leftOffset = viewportOffset.left,
+        rightOffset = window.innerWidth - viewportOffset.right;
+
+      this.setState({
+        openUp: topOffset > bottomOffset,
+        openRight: rightOffset > leftOffset,
+      })
+    }
   }
 
   // Toggle the popover
@@ -90,9 +119,9 @@ export default class GiphySelect extends Component {
 
   render() {
     const { theme = {} } = this.props,
-      { type, query, open } = this.state;
+      { type, query, open, openUp, openRight } = this.state;
     const popoverClassName = open
-      ? theme.selectPopover
+      ? `${theme.selectPopover}${openUp?` ${theme.selectPopoverUp}`:''}${openRight?` ${theme.selectPopoverRight}`:''}`
       : theme.selectClosedPopover;
     const buttonClassName = open
       ? theme.selectPressedButton

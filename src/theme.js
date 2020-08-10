@@ -110,6 +110,16 @@ export const defaultTheme = {
     z-index: 1000;
   `,
 
+  selectPopoverUp: css`
+    top: auto !important;
+    bottom: 100% !important;
+  `,
+
+  selectPopoverRight: css`
+    right: auto !important;
+    left: 0 !important;
+  `,
+
   selectClosedPopover: css`
     display: none;
   `,
