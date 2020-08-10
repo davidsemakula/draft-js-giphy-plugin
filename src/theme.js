@@ -172,6 +172,20 @@ export const defaultTheme = {
     overflow-y: scroll;
   `,
 
+  grid: css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  `,
+
+  gridColumn: css`
+
+  `,
+
+  gridImageWrapper: css`
+    margin-bottom: 4px;
+  `,
+
   gridLoader: css`
     display: flex;
     align-items: center;
